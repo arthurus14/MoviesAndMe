@@ -6,19 +6,21 @@ import { getFillmsFromApiWithSearchedText } from '../API/TMDBApi'
 class Search extends React.Component {
   constructor(props){
     super(props)
-    this.state = {films: [],
-    searchedText : ""}
+    this.state = {
+      films: [],
+      }
+        this.searchedText = ""
     }
   _loadFilms(){
-    if(this.state.searchedText.length > 0){
-    getFillmsFromApiWithSearchedText(this.state.searchedText).then(data=>this.setState({films: data.results}));
+    if(this.searchedText.length > 0){
+    getFillmsFromApiWithSearchedText(this.searchedText).then(data=>this.setState({films: data.results}));
     }
   }
   _searchTextInputChanged(text){
-    this.setState({searchedText:text})
+    this.searchedText = text
   }
   render() {
-    console.log("render");
+    console.log("réponse");
     return (
       <View style={styles.main_container}>
         <TextInput onChangeText={(text)=> this._searchTextInputChanged(text)} style={styles.textinput} placeholder="movie name"/>
