@@ -22,7 +22,7 @@ class Search extends React.Component {
     {
       this.page = data.page
       this.totalPages = data.total_pages
-    
+
        this.setState({
         films: this.state.films.concat(data.results),
         isLoading:false
@@ -59,7 +59,7 @@ class Search extends React.Component {
     return (
       <View style={styles.main_container}>
         <TextInput onSubmitEditing = { () => this._searchFilms()} onChangeText={(text)=> this._searchTextInputChanged(text)} style={styles.textinput} placeholder="movie name"/>
-        <Button title="Search" onPress={()=> this._searchFilms()}/>
+        <Button title="On y vas" onPress={()=> this._searchFilms()}/>
         <FlatList
 
           data={this.state.films}
