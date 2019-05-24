@@ -1,13 +1,15 @@
 import React from 'react';
-import {StyleSheet,View,Text,Image} from 'react-native';
+import {StyleSheet,View,Text,Image, TouchableOpacity} from 'react-native';
 import {getImageFromApi} from '../API/TMDBApi'
 class FilmsItem extends React.Component {
   render() {
 {/*comment*/}
-    const film = this.props.film;
+    const { film, displayDetailForFilm } = this.props
     return (
 
-<View style={styles.main}>
+<TouchableOpacity
+ style={styles.main}
+ onPress={()=>displayDetailForFilm(film.id)}>
 <Image
   source={{ uri: getImageFromApi(film.poster_path) }}
   style={styles.image  }
@@ -27,7 +29,7 @@ class FilmsItem extends React.Component {
           <Text style={styles.sorti  }> Sorti le :{film.release_date} </Text>
   </View>
       </View>
-      </View>
+      </TouchableOpacity>
     );
   }
 }

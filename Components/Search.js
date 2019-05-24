@@ -42,6 +42,10 @@ class Search extends React.Component {
         )
     }
   }
+  _displayDetailForFilm = (idFilm)=>{
+      //console.log('id du film '+idFilm);
+      this.props.navigation.navigate("FilmDetail",{idFilm : idFilm});
+  }
   _searchFilms(){
     this.page = 0
     this.totalPages = 0
@@ -59,7 +63,7 @@ class Search extends React.Component {
     return (
       <View style={styles.main_container}>
         <TextInput onSubmitEditing = { () => this._searchFilms()} onChangeText={(text)=> this._searchTextInputChanged(text)} style={styles.textinput} placeholder="movie name"/>
-        <Button title="On y vas" onPress={()=> this._searchFilms()}/>
+        <Button title="Let's go" onPress={()=> this._searchFilms()}/>
         <FlatList
 
           data={this.state.films}
@@ -74,7 +78,7 @@ class Search extends React.Component {
             }
           }}
 
-          renderItem={({item}) => <FilmsItem film={item}/> }
+          renderItem={({item}) => <FilmsItem film={item} displayDetailForFilm={this._displayDetailForFilm}/> }
         />
         {this._displayLoading()}
       </View>
@@ -83,7 +87,6 @@ class Search extends React.Component {
 }
 const styles = StyleSheet.create( {
   main_container:{
-    marginTop:40,
     flex:1
   },
   textinput : {
